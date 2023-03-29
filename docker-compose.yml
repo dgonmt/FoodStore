@@ -1,14 +1,20 @@
-version: '3'
+version: "3.9"
 
 services:
-
-  foodstore-db:
-    image: mysql:8.0
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=FoodAppDb
-      - MYSQL_USER=admin
-      - MYSQL_PASSWORD=password
+      MYSQL_DATABASE: foodstoredb
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: root_password
     ports:
-      -3309:3306
+      - "3309:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
 
