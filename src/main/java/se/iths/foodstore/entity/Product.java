@@ -4,21 +4,44 @@ package se.iths.foodstore.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import se.iths.foodstore.Category;
 
 @Entity
-public class Food {
+public class Product {
+
     @Id
     @GeneratedValue
     private Long id;
-    private String category;
-    private double weight;
-    private double price;
 
-    public String getCategory() {
+    @NotBlank
+    private String name;
+
+    private Category category;
+
+    @Min(0)
+    private double weight;
+
+    @Min(0)
+    private double pricePerKg;
+
+    public Product() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
@@ -30,12 +53,12 @@ public class Food {
         this.weight = weight;
     }
 
-    public double getPrice() {
-        return price;
+    public double getPricePerKg() {
+        return pricePerKg;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setPricePerKg(double price) {
+        this.pricePerKg = price;
     }
 
     public void setId(Long id) {
