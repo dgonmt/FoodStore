@@ -22,6 +22,11 @@ public class ProductController {
     return "index";
     }
 
+    @GetMapping("/start")
+    public String startPage() {
+        return "start";
+    }
+
     @PostMapping("/index")
     public RedirectView choiceForm(@RequestParam String choice){
         if(choice.equals("admin")){
