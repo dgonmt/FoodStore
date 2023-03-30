@@ -2,26 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Index</title>
+    <title>Admin options</title>
+    <style>    a {
+        display: inline-block;
+        margin-top: 20px;
+        text-decoration: none;
+        background-color: rosybrown;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: background-color 0.2s ease;
+    }
+
+    a:hover {
+        background-color: #c35757;
+    }
+    </style>
 </head>
 <body>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Choice</title>
-</head>
-<body>
-<h3 style="font-family: sans-serif; color: darkolivegreen">Please choose your role</h3>
-<form method="post" action="http://localhost:8080/index">
-
-  <label><input type="radio" name="choice" value="admin"> Admin</label><br>
-  <label><input type="radio" name="choice" value="user"> User</label><br>
-  <br>
-  <input type="submit" value="Proceed">
-</form>
-</body>
-</html>
-
+<h3 style="font-family: sans-serif; color: darkolivegreen">Who are you?</h3>
+<a href="/admin">Admin</a>
+<a href="/user">Customer</a>
 </body>
 </html>

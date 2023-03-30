@@ -26,6 +26,7 @@ public class StoreController {
 
     @GetMapping("/index")
     public String choiceView(){
+        adminService.mockAdmins();
     return "index";
     }
 
@@ -63,7 +64,7 @@ public class StoreController {
             return "redirect:/admin";
         } else {
             model.addAttribute("admin", admin);
-          //  model.addAttribute("welcome", adminService.welcomeAdmin(admin));
+            model.addAttribute("welcome", adminService.welcomeAdmin(admin));
             return "adminOptions";
         }
     }
