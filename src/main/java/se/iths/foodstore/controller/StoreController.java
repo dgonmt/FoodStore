@@ -25,14 +25,13 @@ public class StoreController {
 
     /*
     * Section 1
-    * User definition & validation
+    * User definition & login/validation
     *
     * Index exposes two buttons -> Customer and Administrator
     * When user has defined its role, the app redirects the user
     * to a login form. Depending on chosen role, the user gets to be validated.
     *
     * */
-
 
     @GetMapping("/start")
     public String welcomePage() {
@@ -50,6 +49,8 @@ public class StoreController {
     }
 
 
+//-------------------------------------------------------------------------------
+    
     @GetMapping("/index")
     public String choiceView(){
         productService.mockProducts(); // Mock method to create sample products
