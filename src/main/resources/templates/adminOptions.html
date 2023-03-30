@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin options</title>
+    <style>    a {
+        display: inline-block;
+        margin-top: 20px;
+        text-decoration: none;
+        background-color: rosybrown;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: background-color 0.2s ease;
+    }
+
+    a:hover {
+        background-color: #c35757;
+    }
+    </style>
+</head>
+<body>
+<h3 style="font-family: sans-serif; color: darkolivegreen">Please choose the option</h3>
+<form method="post" action="http://localhost:8080/choice">
+    <br>
+    <label><input type="radio" name="choice" value="orders"> Manage orders</label><br>
+    <label><input type="radio" name="choice" value="new"> New product</label><br>
+    <br>
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>

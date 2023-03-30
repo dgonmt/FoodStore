@@ -8,14 +8,21 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
+import se.iths.foodstore.entity.Admin;
 import se.iths.foodstore.entity.Product;
+import se.iths.foodstore.service.AdminService;
 import se.iths.foodstore.service.ProductService;
 
+import java.sql.SQLException;
+
 @Controller
-public class ProductController {
+public class StoreController {
 
     @Autowired
     ProductService productService;
+
+    @Autowired
+    AdminService adminService;
 
     @GetMapping("/index")
     public String choiceView(){
@@ -32,8 +39,38 @@ public class ProductController {
     }
 
     @GetMapping("/admin")
-    public String adminView(){
+    String getUser(Model m) {
+        m.addAttribute("admin", new Admin());
         return "admininlogg";
+    }
+
+    @PostMapping("/admin")
+    String userForm(@ModelAttribute Admin admin) {
+        adminService.setAdmin(admin);
+        return "redirect:/adminOptions";
+    }
+
+    @GetMapping("/adminOptions")
+    String getOptions(Model model) {
+        Admin admin = adminService.getAdmin();
+        if (admin == null) {
+            // If there's no admin in the session, redirect back to the admin page
+            return "redirect:/admin";
+        } else {
+            model.addAttribute("admin", admin);
+          //  model.addAttribute("welcome", adminService.welcomeAdmin(admin));
+            return "adminOptions";
+        }
+    }
+
+    @PostMapping("/adminOptions")
+    public RedirectView adminChoice(@RequestParam("choice") String choice) {
+        if (choice.equals("orders")) {
+            return new RedirectView("/orders");
+        } else {
+            return new RedirectView("/new");
+        }
+
     }
 
     @GetMapping("/user")

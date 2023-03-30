@@ -1,18 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Admin logg in</title>
 </head>
 <body>
-Hi Admin, please verify yourself!
+
 <br/>
-<br/>
-<form method="post" action="http://localhost:8080/admin">
-    <input name="username" type="text" size="8" value="username"/>
-    <input name="password" type="text" size="8" value="password"/>
-    <br/>
-    <input name="submit" type="submit" value="Submit"/>
+<h3>Hi Admin, please verify yourself!</h3>
+<form th:action="@{/admin}" method="post" th:object="${admin}">
+    <label>Username:</label>
+    <input type="text" th:field="*{username}">
+    <br>
+    <label>Password:</label>
+    <input type="password" th:field="*{password}">
+    <input type="submit" name="Submit">
 </form>
 </body>
 </html>

@@ -2,15 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>New product</title>
 </head>
 <body>
 <h3>New product</h3>
 <form th:action="@{/new}" method="post" th:object="${product}">
     Name: <input type="text" th:field="*{name}" /> </br>
     Category: <input type="text" th:field="*{category}" /><br/>
-    Weight: <input type="text" th:field="*{weight}" value="" /><br/>
-    Price: <input type="text" th:field="*{pricePerKg}" value=""  />
+    Weight: <input type="text" th:field="*{weight}" value="0" /><br/>
+    Price per kg: <input type="text" th:field="*{pricePerKg}" value="0"  />
     <input type="submit" value="New product"/>
 </form>
 </body>
