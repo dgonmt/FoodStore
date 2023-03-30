@@ -18,7 +18,7 @@ public class Product {
     @NotBlank
     private String name;
 
-    private Category category;
+    private String category;
 
     @Min(0)
     private double weight;
@@ -27,6 +27,12 @@ public class Product {
     private double pricePerKg;
 
     public Product() {
+    }
+    public Product(String name, String category, double weight, double pricePerKg) {
+        this.name=name;
+        this.category=category;
+        this.weight=weight;
+        this.pricePerKg=pricePerKg;
     }
 
     public String getName() {
@@ -37,11 +43,11 @@ public class Product {
         this.name = name;
     }
 
-    public Category getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 

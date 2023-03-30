@@ -1,14 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Website</title>
+    <title>FOODSHOP 3.0</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #33a7cc;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
         .container {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
+        }
+
+        .title {
+            font-size: 48px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 40px;
         }
 
         .button-container {
@@ -27,18 +46,10 @@
             cursor: pointer;
             transition: all 0.3s ease;
             flex: 1;
-        }
-
-        .customer {
+            margin: 0 10px;
             background-color: #33a7cc;
+            border: none;
             color: white;
-            margin-right: 20px;
-        }
-
-        .admin {
-            background-color: #33a7cc;
-            color: white;
-            margin-left: 20px;
         }
 
         .button:hover {
@@ -46,14 +57,27 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.43);
         }
 
+        .customer {
+            background-color: #33a7cc;
+            margin-right: 10px;
+        }
+
+        .admin {
+            background-color: #33a7cc;
+            margin-left: 10px;
+        }
+
     </style>
 </head>
 <body>
+
 <div class="container">
-    <h1>FOODSHOP 3.0</h1>
     <div class="button-container">
-        <button class="button customer">Customer</button>
-        <button class="button admin">Administrator</button>
+        <form>
+            <button type="submit" formaction="/customerlogin" class="button customer">Customer</button>
+            <button type="submit" formaction="/adminlogin" class="button admin">Administrator</button>
+        </form>
+
     </div>
 </div>
 </body>

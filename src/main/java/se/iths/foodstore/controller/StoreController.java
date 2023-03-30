@@ -3,37 +3,63 @@ package se.iths.foodstore.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 import se.iths.foodstore.entity.Admin;
 import se.iths.foodstore.entity.Product;
 import se.iths.foodstore.service.AdminService;
 import se.iths.foodstore.service.ProductService;
-
-import java.sql.SQLException;
+import se.iths.foodstore.service.UserService;
 
 @Controller
 public class StoreController {
 
     @Autowired
     ProductService productService;
-
     @Autowired
     AdminService adminService;
 
+    @Autowired
+    UserService userService;
+
+
+    /*
+    * Section 1
+    * User definition & validation
+    *
+    * Index exposes two buttons -> Customer and Administrator
+    * When user has defined its role, the app redirects the user
+    * to a login form. Depending on chosen role, the user gets to be validated.
+    *
+    * */
+
+
+    @GetMapping("/start")
+    public String welcomePage() {
+        return "start";
+    }
+
+    @RequestMapping(value = "/customerlogin", method = RequestMethod.GET)
+    public String customerHandle() {
+        return "login";
+    }
+
+    @RequestMapping(value = "/adminlogin", method = RequestMethod.GET)
+    public String adminHandle() {
+        return "login";
+    }
+
+
     @GetMapping("/index")
     public String choiceView(){
-        adminService.mockAdmins();
+        productService.mockProducts(); // Mock method to create sample products
+        adminService.mockAdmins(); // Mock method to create sample Admins
+        userService.mockUsers(); // Mock method to create sample users/customers
     return "index";
     }
 
-    @GetMapping("/start")
-    public String startPage() {
-        return "start";
-    }
+
+
 
     @PostMapping("/index")
     public RedirectView choiceForm(@RequestParam String choice){
@@ -43,6 +69,8 @@ public class StoreController {
             return new RedirectView("user");
         }
     }
+
+
 
     @GetMapping("/admin")
     String getUser(Model m) {
@@ -54,6 +82,11 @@ public class StoreController {
     String userForm(@ModelAttribute Admin admin) {
         adminService.setAdmin(admin);
         return "redirect:/adminOptions";
+    }
+
+    @GetMapping("/login")
+    String login() {
+        return "login";
     }
 
     @GetMapping("/adminOptions")
@@ -81,7 +114,7 @@ public class StoreController {
 
     @GetMapping("/user")
     public String userView(){
-        return "userinlogg";
+        return "login";
     }
 
     @GetMapping("/new")
