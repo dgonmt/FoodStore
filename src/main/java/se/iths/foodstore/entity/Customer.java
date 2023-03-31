@@ -6,7 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 @Entity
-public class User {
+public class Customer {
     @Id
     @GeneratedValue
     private Long id;
@@ -14,8 +14,8 @@ public class User {
     private String userName;
     private String password;
 
-    public User() {}
-    public User(String userName, String password) {
+    public Customer() {}
+    public Customer(String userName, String password) {
         this.userName=userName;
         this.password=password;
     }

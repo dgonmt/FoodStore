@@ -9,7 +9,7 @@ import se.iths.foodstore.entity.Admin;
 import se.iths.foodstore.entity.Product;
 import se.iths.foodstore.service.AdminService;
 import se.iths.foodstore.service.ProductService;
-import se.iths.foodstore.service.UserService;
+import se.iths.foodstore.service.CustomerService;
 
 @Controller
 public class StoreController {
@@ -18,9 +18,8 @@ public class StoreController {
     ProductService productService;
     @Autowired
     AdminService adminService;
-
     @Autowired
-    UserService userService;
+    CustomerService customerService;
 
 
     /*
@@ -33,29 +32,45 @@ public class StoreController {
     *
     * */
 
-    @GetMapping("/start")
+    @GetMapping("/start") // Directs the user depending on role
     public String welcomePage() {
         return "start";
     }
 
-    @RequestMapping(value = "/customerlogin", method = RequestMethod.GET)
+    @GetMapping("/customerlogin") // Validates the customer
     public String customerHandle() {
         return "login";
     }
 
-    @RequestMapping(value = "/adminlogin", method = RequestMethod.GET)
+    @PostMapping("/customerlogin")
+    public String loginCustomer(@RequestParam String username,
+                                @RequestParam String password,
+                                Model m) {
+
+        customerService.validateUser(username, password);
+
+
+        return "storefront";
+    }
+    @GetMapping("/adminlogin")
     public String adminHandle() {
         return "login";
+    }
+    @PostMapping("/adminlogin")
+    public String loginAdmin(@RequestParam String username,
+                             @RequestParam String password,
+                             Model m){
+        return "adminpage";
     }
 
 
 //-------------------------------------------------------------------------------
-    
+
     @GetMapping("/index")
     public String choiceView(){
         productService.mockProducts(); // Mock method to create sample products
         adminService.mockAdmins(); // Mock method to create sample Admins
-        userService.mockUsers(); // Mock method to create sample users/customers
+        customerService.mockUsers(); // Mock method to create sample users/customers
     return "index";
     }
 
@@ -85,10 +100,7 @@ public class StoreController {
         return "redirect:/adminOptions";
     }
 
-    @GetMapping("/login")
-    String login() {
-        return "login";
-    }
+
 
     @GetMapping("/adminOptions")
     String getOptions(Model model) {
