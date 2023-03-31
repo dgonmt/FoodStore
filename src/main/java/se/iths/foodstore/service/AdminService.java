@@ -34,6 +34,15 @@ public class AdminService {
         this.admin = admin;
     }
 
+
+    public boolean validateAdmin(String username, String password) {
+        // return true if admin exists
+        //else false
+
+        return repo.existsByUsernameAndPassword(username, password);
+
+    }
+
     public String welcomeAdmin(Admin admin) {
         if(repo.existsByUsernameAndPassword(admin.getUsername(), admin.getPassword())){
             return "Welcome " + admin.getUsername();

@@ -1,28 +1,30 @@
 package se.iths.foodstore.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import se.iths.foodstore.Category;
 
 @Entity
+@Table(name = "product")
 public class Product {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "name")
     @NotBlank
     private String name;
 
+    @Column(name = "category")
     private String category;
 
+    @Column(name = "weight")
     @Min(0)
     private double weight;
 
+    @Column(name = "price_per_kg")
     @Min(0)
     private double pricePerKg;
 

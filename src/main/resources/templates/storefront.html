@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+    <h1 th:text="${loggedCustomer}"></h1>
+</div>
+
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>User</th>
+            <th>Score</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="row : ${products}">
+            <td th:text="${row[0]}"></td>
+            <td th:text="${row[1]}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

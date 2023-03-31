@@ -1,12 +1,8 @@
 version: "3.9"
-
 services:
-  db:
-    image: mysql:latest
-    environment:
-      MYSQL_DATABASE: foodstoredb
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: password
-      MYSQL_ROOT_PASSWORD: root
+  mysql:
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "3309:3306"

@@ -1,20 +1,21 @@
 package se.iths.foodstore.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
+@Table(name = "admin")
 public class Admin {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "username")
     @NotBlank
     private String username;
 
+    @Column(name = "password")
     @NotBlank
     private String password;
 

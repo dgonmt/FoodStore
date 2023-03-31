@@ -1,22 +1,25 @@
 package se.iths.foodstore.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "customer")
 public class Customer {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String userName;
+    @Column(name = "username")
+    private String username;
+
+    @Column(name = "password")
     private String password;
 
     public Customer() {}
-    public Customer(String userName, String password) {
-        this.userName=userName;
+
+    public Customer(String username, String password) {
+        this.username =username;
         this.password=password;
     }
 

@@ -3,23 +3,15 @@ package se.iths.foodstore.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import se.iths.foodstore.entity.Customer;
-import se.iths.foodstore.repo.UserRepo;
-
-import java.util.Optional;
+import se.iths.foodstore.repo.CustomerRepo;
 
 @Service
 public class CustomerService {
 
     @Autowired
-    UserRepo repo;
+    CustomerRepo repo;
 
     Customer customer;
-
-
-
-    public Customer createNewUser(String userName, String password) {
-       return repo.save(new Customer(userName, password));
-    }
 
     public void mockUsers() {
         repo.save(new Customer("Kalle","1"));
@@ -27,7 +19,13 @@ public class CustomerService {
 
     }
 
-    public String validateUser(String username, String password) {
+    public Customer validateCustomer(String username, String password) {
+
+        if (repo.existsByUsernameAndPassword(username, password)) {
+            return repo.getCustomersByUsername(username);
+        } else {
+            return repo.save(new Customer(username, password));
+        }
 
     }
 
