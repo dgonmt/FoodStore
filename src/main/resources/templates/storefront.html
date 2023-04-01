@@ -7,6 +7,7 @@
 <body>
 
 <div>
+    <h1>Welcome </h1>
     <h1 th:text="${loggedCustomer}"></h1>
 </div>
 
@@ -14,14 +15,14 @@
     <table>
         <thead>
         <tr>
-            <th>User</th>
-            <th>Score</th>
+            <th>Product name</th>
+            <th>Price (kg)</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="row : ${products}">
-            <td th:text="${row[0]}"></td>
-            <td th:text="${row[1]}"></td>
+        <tr th:each="p : ${products}">
+            <td th:text="${p.getName()}">...</td>
+            <td th:text="${p.getPricePerKg()}">...</td>
         </tr>
         </tbody>
     </table>

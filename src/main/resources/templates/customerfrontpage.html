@@ -1,10 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+
+<div>
+    <h1>Welcome </h1>
+    <h1 th:text="${loggedCustomer}"></h1>
+</div>
+
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>Product name</th>
+            <th>Price (kg)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="p : ${products}">
+            <td th:text="${p.getName()}">...</td>
+            <td th:text="${p.getPricePerKg()}">...</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 
 </body>
 </html>

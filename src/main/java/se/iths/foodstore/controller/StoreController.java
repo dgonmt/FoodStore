@@ -4,9 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.view.RedirectView;
-import se.iths.foodstore.entity.Admin;
-import se.iths.foodstore.entity.Product;
 import se.iths.foodstore.service.AdminService;
 import se.iths.foodstore.service.ProductService;
 import se.iths.foodstore.service.CustomerService;
@@ -28,6 +25,8 @@ public class StoreController {
 
         return "start";
     }
+
+
 
 
 }

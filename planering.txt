@@ -1,0 +1,34 @@
+1) Docker DB som skapas automatiskt.
+
+2) CUSTOMER/ADMINISTRATOR
+
+	* Front-end -> Controller
+	    - Välj profil via en knapp som skickar dig till rätt login-sida.
+	    - Varje knapp är kopplad till en GET-method som returnerar login.html
+
+3) LOGIN
+
+    * Front-end -> Controller
+        - Användarnamn och lösenord matas in via formuläret och skickas med POST
+
+	* Controller <-> Back-end
+	    - Data från klienten injiceras i en valideringsmetod som returnerar en
+	      validerad klient som ett objekt och använder det objektet under hela session.
+
+	* Front-end <- Controller
+	    - Efter anvämndarens validering skickas klienten till "customerpage.html"
+
+
+4) STORE
+
+    * Front-end -> Controller
+        - "customerpage.html" förladdas med den inloggade kunden samt en lista av
+          tillgängliga produkter.
+
+	* Varukorg:
+		1) Lägga till och ta bort produkter
+		2) Beställ-knapp -> Ny sida som visar ordern
+		3) Order visas med orderlines (Vara, antar, pris)
+		   och totalpris längs ned men en knapp som lägger
+		   ordern.
+

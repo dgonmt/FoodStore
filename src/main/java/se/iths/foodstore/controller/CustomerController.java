@@ -6,19 +6,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import se.iths.foodstore.service.AdminService;
 import se.iths.foodstore.service.CustomerService;
 import se.iths.foodstore.service.ProductService;
+
+import java.util.List;
 
 
 @Controller
 public class CustomerController {
 
     @Autowired
-    ProductService productService;
-
-    @Autowired
     CustomerService customerService;
+    @Autowired
+    ProductService productService;
 
     /* Customer login/validation
      *
@@ -29,9 +29,13 @@ public class CustomerController {
      * */
 
 
+    //---------------------------------------------------------------------END-POINTS
+
     @GetMapping("/customerlogin") // Validates the customer
     public String customerHandle() {
-        return "login";
+        System.out.println("/customerlogin GET");
+
+        return "login-customer";
     }
 
     @PostMapping("/customerlogin")
@@ -39,10 +43,23 @@ public class CustomerController {
                                           @RequestParam String password,
                                           Model m) {
 
-        m.addAttribute("loggedCustomer", customerService.validateCustomer(username, password));
+        System.out.println("/customerlogin POST");
+
+        m.addAttribute("loggedCustomer",
+                customerService.escortCustomer(username, password));
+
+        prepareStore(m);
+
+        return "test";
+    }
+
+//-------------------------------------------------------------------------------
+
+//-------------------------------------------------------------------HELP-METHODS
 
 
-        return "storefront";
+    public void prepareStore(Model m) {
+        m.addAttribute("products", productService.getAllProducts());
     }
 //-------------------------------------------------------------------------------
 

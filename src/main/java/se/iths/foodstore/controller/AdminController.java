@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import se.iths.foodstore.service.AdminService;
-import se.iths.foodstore.service.CustomerService;
-import se.iths.foodstore.service.ProductService;
 
 @Controller
 public class AdminController {
@@ -28,7 +26,7 @@ public class AdminController {
 
     @GetMapping("/adminlogin")
     public String adminHandle() {
-        return "login";
+        return "login-customer";
     }
 
     @PostMapping("/adminlogin")
