@@ -3,30 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link th:href="@{/styles/main.css}" rel="stylesheet" />
 </head>
 <body>
-
-<div>
-    <h1>Welcome </h1>
-    <h1 th:text="${loggedCustomer}"></h1>
+<!---------------------NAVBAR--------------------->
+<nav class="navbar">
+    <a class="navbar-brand" href="#">FoodStore</a>
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="#">Cart</a>
+        </li>
+    </ul>
+</nav>
+<!--------------------WIDGETS--------------------->
+<div class="page-layout">
+<!--------------------Produkter------------------->
+    <div class="widget-product-container">
+        <div class="widget-product-grid">
+            <div th:each="p : ${products}" class="product-box">
+                <h2 th:text="${p.getName()}"></h2>
+                <p th:text="'Price (kg): ' + ${p.getPricePerKg()}"></p>
+                <input type="text" class="quantity-input" value="0" />
+                <button class="add-button">Add to cart</button>
+            </div>
+        </div>
+    </div>
+<!---------------------Varukorg------------------->
+    <div class="widget-cart">
+        <p>Varukorg</p>
+    </div>
 </div>
-
-<div>
-    <table>
-        <thead>
-        <tr>
-            <th>Product name</th>
-            <th>Price (kg)</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="p : ${products}">
-            <td th:text="${p.getName()}">...</td>
-            <td th:text="${p.getPricePerKg()}">...</td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-
 </body>
 </html>

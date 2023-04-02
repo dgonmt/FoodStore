@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import se.iths.foodstore.service.CustomerService;
 import se.iths.foodstore.service.ProductService;
 
-import java.util.List;
-
 
 @Controller
 public class CustomerController {
@@ -50,7 +48,7 @@ public class CustomerController {
 
         prepareStore(m);
 
-        return "test";
+        return "storefront";
     }
 
 //-------------------------------------------------------------------------------

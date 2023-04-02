@@ -8,20 +8,20 @@
 
 3) LOGIN
 
-    * Front-end -> Controller
+    * Front -> Controller
         - Användarnamn och lösenord matas in via formuläret och skickas med POST
 
-	* Controller <-> Back-end
+	* Controller <-> Back
 	    - Data från klienten injiceras i en valideringsmetod som returnerar en
 	      validerad klient som ett objekt och använder det objektet under hela session.
 
-	* Front-end <- Controller
+	* Front <- Controller
 	    - Efter anvämndarens validering skickas klienten till "customerpage.html"
 
 
 4) STORE
 
-    * Front-end -> Controller
+    * Front -> Controller
         - "customerpage.html" förladdas med den inloggade kunden samt en lista av
           tillgängliga produkter.
 

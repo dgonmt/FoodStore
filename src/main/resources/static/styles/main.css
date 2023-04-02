@@ -1,0 +1,138 @@
+body{
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom right, #E3F0FF, #FAFCFF);
+}
+/* ----------------------------------------------------------------NAVBAR */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    margin-bottom: 20px;
+}
+
+.navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+}
+
+.navbar-nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    margin-left: 20px;
+}
+
+.nav-link {
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.nav-link:hover {
+    background-color: #fff;
+    color: rgba(51, 51, 51, 0.53);
+}
+/* -------------------------------------------------------------CONTAINER */
+
+.page-layout {
+    display: flex;
+}
+/* ----------------------------------------------------WIDGET - produkter */
+
+.widget-product-container {
+    max-width: 800px;
+    margin-right: 10px;
+    margin-left: 20px;
+    padding: 20px;
+    background-color: #eeeeee;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.43);
+}
+
+.widget-product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+
+.product-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(51, 167, 204, 0.14);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.43);
+    transition: background-color 0.1s ease;
+}
+
+.quantity-input {
+    width: 30px;
+    margin: 10px;
+    border-radius: 2px;
+}
+
+.add-button {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: #33a7cc;
+    cursor: pointer;
+    margin: 4px 2px;
+    transition: background-color 0.1s ease;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}
+/* -----------------------------------------------------WIDGET - varukorg */
+
+.widget-cart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    margin-right: 20px;
+    width: 600px;
+    height: 300px;
+    background-color: #eeeeee;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.43);
+    transition: background-color 0.1s ease;
+}
+
+.box:hover {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.43);
+    background-color: rgba(51, 167, 204, 0.26);
+}
+
+.add-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.43);
+}
+.add-button:active {
+    transform: translateY(3px);
+}

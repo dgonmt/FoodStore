@@ -38,7 +38,7 @@ public class AdminController {
         if (adminService.validateAdmin(username, password)) {
             return "adminpage";
         } else {
-            return "start";
+            return "index";
         }
 
     }
