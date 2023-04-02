@@ -1,4 +1,4 @@
-#FOODSTORE
+# FOODSTORE
 
 Sample project for the course *Komplex Javautveckling* at **IT-Högskolan**  
   
