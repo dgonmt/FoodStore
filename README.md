@@ -1,9 +1,9 @@
 # FOODSTORE
 
 Sample project for the course *Komplex Javautveckling* at **IT-Högskolan**  
-  
+***    
 #### DESCRIPTION  
-***  
+  
 
 The goal is to learn simple Spring MVC & JPA concepts by creating a web shop.  
 There are no security implementations at the moment.  
@@ -15,12 +15,11 @@ Technologies used:
 - Docker  
 - MySQL  
 - CSS  
-  
-#### INSTRUCTIONS  
 ***  
+#### INSTRUCTIONS  
 
 1. Navigate to the root folder
 2. Execute <code>docker-compose up</code>
 3. Run the application 
-
+***
 
