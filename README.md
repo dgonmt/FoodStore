@@ -2,7 +2,11 @@
 
 Sample project for the course *Komplex Javautveckling* at **IT-Högskolan**  
   
-The purpose is to write a simple webapp.  
+###### DESCRIPTION  
+The goal is to learn simple Spring MVC & JPA concepts  
+by creating a web shop. There are no security implementations  
+at the moment.  
+
 Technologies used:  
 - Spring Data JPA  
 - Spring Boot  
@@ -11,6 +15,7 @@ Technologies used:
 - MySQL  
 - CSS  
   
+###### INSTRUCTIONS   
 1. Navigate to the root folder
 2. Execute docker-compose up
 3. Run the application 
