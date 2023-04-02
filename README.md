@@ -1,6 +1,7 @@
 # FOODSTORE
 
-Sample project for the course *Komplex Javautveckling* at **IT-Högskolan**  
+A simple web-shop with some basic implementations of listed technologies.  
+
 ***    
 #### DESCRIPTION  
   
