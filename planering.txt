@@ -31,4 +31,5 @@
 		3) Order visas med orderlines (Vara, antar, pris)
 		   och totalpris längs ned men en knapp som lägger
 		   ordern.
+-------------------------------------------------------------------------------------
 

@@ -2,6 +2,7 @@ body{
     margin: 0;
     padding: 0;
     background: linear-gradient(to bottom right, #E3F0FF, #FAFCFF);
+    font-family: Arial, sans-serif;
 }
 /* ----------------------------------------------------------------NAVBAR */
 
@@ -50,6 +51,13 @@ body{
     background-color: #fff;
     color: rgba(51, 51, 51, 0.53);
 }
+
+/*#cartToggle {*/
+/*    display: none;*/
+/*}*/
+/*#cartToggle:target {*/
+/*    display: block;*/
+/*}*/
 /* -------------------------------------------------------------CONTAINER */
 
 .page-layout {
@@ -108,20 +116,88 @@ body{
 }
 /* -----------------------------------------------------WIDGET - varukorg */
 
-.widget-cart {
-    display: flex;
+.widget-cart-container {
+    display: inline-list-item;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-left: 10px;
-    margin-right: 20px;
     width: 600px;
-    height: 300px;
-    background-color: #eeeeee;
+    hight: 300px;
+    margin-right: 10px;
+    margin-left: 20px;
     padding: 20px;
+    background-color: #eeeeee;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.43);
+}
+
+.cart-box {
+    display: flex;
+    flex-direction: column;
+    background-color: #eee;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.43);
+    margin-left: 10px;
+    height: fit-content;
+}
+
+.order-btn {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: #33a7cc;
+    cursor: pointer;
+    margin: 10px 5px;
     transition: background-color 0.1s ease;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}
+
+.cart-item-card {
+    display:grid;
+    grid-auto-flow: column;
+    background-color: rgba(51, 167, 204, 0.14);
+
+    padding: 20px;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 0;
+
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.43);
+}
+
+.cart-item-head {
+    display:grid;
+    font-size: 20px;
+    font-weight: bold;
+    border-collapse: collapse;
+    grid-auto-flow: column;
+    border-radius: 10px;
+    list-style-type: none;
+    padding-left: 40px;
+    padding-right: 40px
+}
+
+.cart-item-field {
+    display: inline-block;
+}
+
+li:nth-child(1) {
+    margin-left: 10px;
+
+}
+
+li:nth-child(2) {
+    margin-left: 100px;
+    margin-right: 100px;
+}
+li:nth-child(3) {
+    margin-right: 10px;
+
 }
 
 .box:hover {
@@ -129,10 +205,10 @@ body{
     background-color: rgba(51, 167, 204, 0.26);
 }
 
-.add-button:hover {
+.add-button:hover, .order-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.43);
 }
-.add-button:active {
+.add-button:active, .order-btn:active {
     transform: translateY(3px);
 }

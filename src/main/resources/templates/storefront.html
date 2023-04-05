@@ -23,15 +23,36 @@
             <div th:each="p : ${products}" class="product-box">
                 <h2 th:text="${p.getName()}"></h2>
                 <p th:text="'Price (kg): ' + ${p.getPricePerKg()}"></p>
-                <input type="text" class="quantity-input" value="0" />
-                <button class="add-button">Add to cart</button>
+                <form th:action="@{add-product}" method="post">
+                    <input type="hidden" name="productName" th:value="${p.getName()}"/>
+                    <input type="hidden" name="price" th:value="${p.getPricePerKg()}"/>
+                    <input type="number" name="quantity" class="quantity-input" value="0" />
+                    <button class="add-button">Add to cart</button>
+                </form>
             </div>
         </div>
     </div>
 <!---------------------Varukorg------------------->
-    <div class="widget-cart">
-        <p>Varukorg</p>
+
+    <div class="cart-box">
+        <ul class="cart-item-head">
+            <li >Item</li>
+            <li>Quantity</li>
+            <li>Price</li>
+        </ul>
+        <ul th:each="c : ${cartProductList}" class="cart-item-card">
+            <li th:text="${c.getProductName()}" class="cart-item-field"></li>
+            <li th:text="${c.getQuantity()}" class="cart-item-field"></li>
+            <li th:text="${c.getPrice()}" class="cart-item-field"></li>
+        </ul>
+
+
+        <form>
+            <button type="submit" formaction="/placeorder" class="order-btn">Place Order</button>
+        </form>
+
     </div>
+
 </div>
 </body>
 </html>

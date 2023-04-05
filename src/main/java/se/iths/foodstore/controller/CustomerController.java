@@ -6,8 +6,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import se.iths.foodstore.entity.CartProduct;
 import se.iths.foodstore.service.CustomerService;
 import se.iths.foodstore.service.ProductService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
@@ -17,6 +21,8 @@ public class CustomerController {
     CustomerService customerService;
     @Autowired
     ProductService productService;
+
+    List<CartProduct> cartProducts = new ArrayList<>();
 
     /* Customer login/validation
      *
@@ -48,6 +54,37 @@ public class CustomerController {
 
         prepareStore(m);
 
+        return "storefront";
+    }
+
+    @GetMapping("/add-product")
+    public String addsAProduct(Model m) {
+        prepareStore(m);
+        return "storefront";
+    }
+
+    @PostMapping("/add-product")
+    public String addProductToCart(@RequestParam String productName,
+                                   @RequestParam String price,
+                                   @RequestParam String quantity,
+                                   Model m) {
+        cartProducts.add(new CartProduct(
+                productName,
+                price,
+                quantity));
+
+        m.addAttribute("cartProductList", cartProducts);
+        prepareStore(m);
+
+        return "storefront";
+    }
+
+    @GetMapping("/placeorder")
+    public String placeOrder(Model m) {
+        System.out.println("Order is placed");
+
+        prepareStore(m);
+        productService.createOrder(cartProducts);
         return "storefront";
     }
 

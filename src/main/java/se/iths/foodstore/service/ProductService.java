@@ -2,6 +2,7 @@ package se.iths.foodstore.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import se.iths.foodstore.entity.CartProduct;
 import se.iths.foodstore.entity.Product;
 import se.iths.foodstore.repo.ProductRepo;
 
@@ -19,5 +20,10 @@ public class ProductService {
     }
     public List<Product> getAllProducts() {
         return repo.findAll();
+    }
+    public void createOrder(List<CartProduct> products) {
+        for (CartProduct p : products) {
+            System.out.println(p.getProductName());
+        }
     }
 }
