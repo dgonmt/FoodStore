@@ -28,6 +28,8 @@ public class Product {
     @Min(0)
     private double pricePerKg;
 
+
+
     public Product() {
     }
     public Product(String name, String category, double weight, double pricePerKg) {

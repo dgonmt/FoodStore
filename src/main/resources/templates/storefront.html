@@ -24,6 +24,7 @@
                 <h2 th:text="${p.getName()}"></h2>
                 <p th:text="'Price (kg): ' + ${p.getPricePerKg()}"></p>
                 <form th:action="@{add-product}" method="post">
+                    <input type="hidden" name="productId" th:value="${p.getId()}">
                     <input type="hidden" name="productName" th:value="${p.getName()}"/>
                     <input type="hidden" name="price" th:value="${p.getPricePerKg()}"/>
                     <input type="number" name="quantity" class="quantity-input" value="0" />

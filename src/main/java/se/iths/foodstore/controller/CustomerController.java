@@ -6,21 +6,29 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import se.iths.foodstore.entity.CartProduct;
+import org.springframework.web.context.annotation.SessionScope;
+import se.iths.foodstore.entity.Customer;
+import se.iths.foodstore.model.CartProduct;
 import se.iths.foodstore.service.CustomerService;
 import se.iths.foodstore.service.ProductService;
+import se.iths.foodstore.service.StoreService;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 @Controller
+@SessionScope
 public class CustomerController {
 
     @Autowired
     CustomerService customerService;
     @Autowired
     ProductService productService;
+    @Autowired
+    StoreService storeService;
+
+    Customer customer;
 
     List<CartProduct> cartProducts = new ArrayList<>();
 
@@ -49,8 +57,9 @@ public class CustomerController {
 
         System.out.println("/customerlogin POST");
 
-        m.addAttribute("loggedCustomer",
-                customerService.escortCustomer(username, password));
+        customer = customerService.escortCustomer(username, password);
+
+        m.addAttribute("loggedCustomer", customer);
 
         prepareStore(m);
 
@@ -64,11 +73,13 @@ public class CustomerController {
     }
 
     @PostMapping("/add-product")
-    public String addProductToCart(@RequestParam String productName,
+    public String addProductToCart(@RequestParam Long productId,
+                                   @RequestParam String productName,
                                    @RequestParam String price,
                                    @RequestParam String quantity,
                                    Model m) {
         cartProducts.add(new CartProduct(
+                productId,
                 productName,
                 price,
                 quantity));
@@ -81,10 +92,9 @@ public class CustomerController {
 
     @GetMapping("/placeorder")
     public String placeOrder(Model m) {
-        System.out.println("Order is placed");
 
+        storeService.createOrder(customer, cartProducts);
         prepareStore(m);
-        productService.createOrder(cartProducts);
         return "storefront";
     }
 
