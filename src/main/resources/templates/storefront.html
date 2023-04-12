@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link th:href="@{/styles/main.css}" rel="stylesheet" />
+    <link th:href="@{/styles/main.css}" rel="stylesheet"/>
 </head>
 <body>
-<!---------------------NAVBAR--------------------->
+<!-----------------------------------------------------NAVBAR-->
 <nav class="navbar">
     <a class="navbar-brand" href="#">FoodStore</a>
     <ul class="navbar-nav">
@@ -15,11 +15,11 @@
         </li>
     </ul>
 </nav>
-<!--------------------WIDGETS--------------------->
+<!-------------------------------------------------------MAIN-->
 <div class="page-layout">
-<!--------------------Produkter------------------->
-    <div class="widget-product-container">
-        <div class="widget-product-grid">
+    <!----------------------------------------PRODUCT CONTAINER-->
+    <div class="product-container">
+        <div class="product-grid">
             <div th:each="p : ${products}" class="product-box">
                 <h2 th:text="${p.getName()}"></h2>
                 <p th:text="'Price (kg): ' + ${p.getPricePerKg()}"></p>
@@ -27,39 +27,47 @@
                     <input type="hidden" name="productId" th:value="${p.getId()}">
                     <input type="hidden" name="productName" th:value="${p.getName()}"/>
                     <input type="hidden" name="price" th:value="${p.getPricePerKg()}"/>
-                    <input type="number" name="quantity" class="quantity-input" value="0" />
+                    <input type="number" name="quantity" class="quantity-input" value="0"/>
                     <button class="add-button">Add to cart</button>
                 </form>
             </div>
         </div>
     </div>
-<!---------------------Varukorg------------------->
-
-    <div class="cart-box">
-        <ul class="cart-item-head">
-            <li >Item</li>
+    <!-------------------------------------------CART CONTAINER-->
+    <div class="cart-container">
+        <ul class="cart-header">
+            <li>Item</li>
             <li>Quantity</li>
             <li>Price</li>
         </ul>
-        <ul th:each="c, iInfo : ${cartProductList}" class="cart-item-card">
-            <li th:text="${c.getProductName()}" class="cart-item-field"></li>
-            <li th:text="${c.getQuantity()}" class="cart-item-field"></li>
-            <li th:text="${c.getPrice()}" class="cart-item-field"></li>
-            <form th:action="@{delete-product}" method="post">
-                <input type="hidden" name="indexToRemove" th:value="${iInfo.index}">
-                <button class="delete-button">
-                    <span class="delete-button-component"></span>
-                </button>
-            </form>
+        <ul th:each="c, iInfo : ${cartProductList}" class="cart-item">
+            <div class="cart-row">
+                <li th:text="${c.getProductName()}" class="cart-item-row-left"></li>
+                <li th:text="${c.getQuantity()}" class="cart-item-row-middle"></li>
+                <li th:text="${c.getPrice()}" class="cart-item-row-right"></li>
+            </div>
+            <div class="cart-delete">
+                <form th:action="@{delete-product}" method="post">
+                    <input type="hidden" name="indexToRemove" th:value="${iInfo.index}">
+                    <button class="delete-button">
+                        <span class="delete-button-component"></span>
+                    </button>
+                </form>
+            </div>
         </ul>
-
-
-        <form>
-            <button type="submit" formaction="/placeorder" class="order-btn">Place Order</button>
-        </form>
-
+        <div class="cart-line"></div>
+        <div class="cart-finalize">
+            <div class="cart-order-btn">
+                <form>
+                    <button type="submit" formaction="/placeorder" class="order-btn">Place Order</button>
+                </form>
+            </div>
+            <div class="cart-sum">
+                <p>Total :&nbsp;</p>
+                <p th:text="${cartsum}"></p>
+            </div>
+        </div>
     </div>
-
 </div>
 </body>
 </html>

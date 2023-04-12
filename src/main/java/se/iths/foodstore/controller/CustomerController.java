@@ -14,6 +14,7 @@ import se.iths.foodstore.service.CustomerService;
 import se.iths.foodstore.service.ProductService;
 import se.iths.foodstore.service.StoreService;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,7 +82,10 @@ public class CustomerController {
                 price,
                 quantity));
 
+        String sum = String.valueOf(calculateAndRoundTotal(cartProducts));
+
         m.addAttribute("cartProductList", cartProducts);
+        m.addAttribute("cartsum", sum);
         prepareStore(m);
 
         printArray(cartProducts);
@@ -96,8 +100,11 @@ public class CustomerController {
         cartProducts.remove(indexToRemove);
 
 
-        m.addAttribute("cartProductList", cartProducts);
+        String sum = String.valueOf(calculateAndRoundTotal(cartProducts));
 
+
+        m.addAttribute("cartProductList", cartProducts);
+        m.addAttribute("cartsum", sum);
 
         prepareStore(m);
 
@@ -117,9 +124,18 @@ public class CustomerController {
 
 //-------------------------------------------------------------------HELP-METHODS
 
-
     public void prepareStore(Model m) {
         m.addAttribute("products", productService.getAllProducts());
+    }
+
+    public String calculateAndRoundTotal(List<CartProduct> cart) {
+        double sum = 0;
+        for (CartProduct p : cart) {
+            sum += Double.valueOf(p.getQuantity()) * Double.valueOf(p.getPrice());
+        }
+        String returnSum = String.valueOf(Math.floor(sum * 100) / 100);
+
+        return returnSum;
     }
 
     public void printArray(List<CartProduct> list) {
@@ -129,24 +145,6 @@ public class CustomerController {
 
         System.out.println("------------------");
     }
-
-    //Produktnamnt funkar inte om flera produkter ligger i varukorgen, ändra till produktindex
-
-    public int getIndexToRemove(List<CartProduct> cart, String productName) {
-        int count = 0;
-        int indexToremove = -1;
-        for (CartProduct p : cart) {
-            if (p.getProductName().equals(productName)) {
-                System.out.println("Removed: " + p.getProductName());
-                System.out.println("Index in cart: " + count);
-                indexToremove = count;
-
-            }
-            count++;
-        }
-        return indexToremove;
-    }
-
 
 //-------------------------------------------------------------------------------
 
