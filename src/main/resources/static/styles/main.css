@@ -200,6 +200,22 @@ li:nth-child(3) {
 
 }
 
+.delete-button {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: #33a7cc;
+    cursor: pointer;
+    margin: 4px 2px;
+    transition: background-color 0.1s ease;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}
+
 .box:hover {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.43);
     background-color: rgba(51, 167, 204, 0.26);

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.annotation.SessionScope;
@@ -31,6 +32,7 @@ public class CustomerController {
     Customer customer;
 
     List<CartProduct> cartProducts = new ArrayList<>();
+
 
     /* Customer login/validation
      *
@@ -66,11 +68,6 @@ public class CustomerController {
         return "storefront";
     }
 
-    @GetMapping("/add-product")
-    public String addsAProduct(Model m) {
-        prepareStore(m);
-        return "storefront";
-    }
 
     @PostMapping("/add-product")
     public String addProductToCart(@RequestParam Long productId,
@@ -78,6 +75,7 @@ public class CustomerController {
                                    @RequestParam String price,
                                    @RequestParam String quantity,
                                    Model m) {
+
         cartProducts.add(new CartProduct(
                 productId,
                 productName,
@@ -90,11 +88,22 @@ public class CustomerController {
         return "storefront";
     }
 
+    @PostMapping("/delete-product")
+    public String addProductToCart(@RequestParam int indexToRemove,
+                                   Model m) {
+
+        m.addAttribute("cartProductList", cartProducts.remove(indexToRemove));
+        prepareStore(m);
+
+        return "storefront";
+    }
+
     @GetMapping("/placeorder")
     public String placeOrder(Model m) {
 
         storeService.createOrder(customer, cartProducts);
         prepareStore(m);
+
         return "storefront";
     }
 
@@ -106,6 +115,8 @@ public class CustomerController {
     public void prepareStore(Model m) {
         m.addAttribute("products", productService.getAllProducts());
     }
+
+
 //-------------------------------------------------------------------------------
 
 }
