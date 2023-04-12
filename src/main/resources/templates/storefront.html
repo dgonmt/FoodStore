@@ -47,7 +47,9 @@
             <li th:text="${c.getPrice()}" class="cart-item-field"></li>
             <form th:action="@{delete-product}" method="post">
                 <input type="hidden" name="indexToRemove" th:value="${iInfo.index}">
-                <button class="delete-button">Add to cart</button>
+                <button class="delete-button">
+                    <span class="delete-button-component"></span>
+                </button>
             </form>
         </ul>
 

@@ -75,7 +75,6 @@ public class CustomerController {
                                    @RequestParam String price,
                                    @RequestParam String quantity,
                                    Model m) {
-
         cartProducts.add(new CartProduct(
                 productId,
                 productName,
@@ -85,6 +84,8 @@ public class CustomerController {
         m.addAttribute("cartProductList", cartProducts);
         prepareStore(m);
 
+        printArray(cartProducts);
+
         return "storefront";
     }
 
@@ -92,8 +93,14 @@ public class CustomerController {
     public String addProductToCart(@RequestParam int indexToRemove,
                                    Model m) {
 
-        m.addAttribute("cartProductList", cartProducts.remove(indexToRemove));
+        cartProducts.remove(indexToRemove);
+
+
+        m.addAttribute("cartProductList", cartProducts);
+
+
         prepareStore(m);
+
 
         return "storefront";
     }
@@ -103,7 +110,6 @@ public class CustomerController {
 
         storeService.createOrder(customer, cartProducts);
         prepareStore(m);
-
         return "storefront";
     }
 
@@ -114,6 +120,31 @@ public class CustomerController {
 
     public void prepareStore(Model m) {
         m.addAttribute("products", productService.getAllProducts());
+    }
+
+    public void printArray(List<CartProduct> list) {
+        for (CartProduct o : list) {
+            System.out.println(o.getProductName());
+        }
+
+        System.out.println("------------------");
+    }
+
+    //Produktnamnt funkar inte om flera produkter ligger i varukorgen, ändra till produktindex
+
+    public int getIndexToRemove(List<CartProduct> cart, String productName) {
+        int count = 0;
+        int indexToremove = -1;
+        for (CartProduct p : cart) {
+            if (p.getProductName().equals(productName)) {
+                System.out.println("Removed: " + p.getProductName());
+                System.out.println("Index in cart: " + count);
+                indexToremove = count;
+
+            }
+            count++;
+        }
+        return indexToremove;
     }
 
 

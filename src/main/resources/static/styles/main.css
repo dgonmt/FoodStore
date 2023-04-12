@@ -183,7 +183,7 @@ body{
 }
 
 .cart-item-field {
-    display: inline-block;
+    display: block;
 }
 
 li:nth-child(1) {
@@ -204,16 +204,22 @@ li:nth-child(3) {
     display: block;
     font-size: 16px;
     font-weight: bold;
-    padding: 10px 20px;
+    padding: 8px 6px;
     border-radius: 10px;
-    background-color: #33a7cc;
+    background-color: #ee5a5f;
     cursor: pointer;
-    margin: 4px 2px;
     transition: background-color 0.1s ease;
     border: none;
     color: white;
     text-align: center;
     text-decoration: none;
+}
+
+.delete-button-component {
+    display: block;
+    width: 7px;
+    height: 3px;
+    background-color: rgba(51, 51, 51, 0.71);
 }
 
 .box:hover {
