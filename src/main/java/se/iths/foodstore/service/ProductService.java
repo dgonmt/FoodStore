@@ -17,8 +17,25 @@ public class ProductService {
     public Optional<Product> findById(Long id) {
         return repo.findById(id);
     }
+
     public List<Product> getAllProducts() {
         return repo.findAll();
+    }
+
+    public List<Product> getProductByCategory(String category) {
+        return repo.findProductsByCategory(category);
+    }
+
+    public List<String> getCategories() {
+        return repo.findAllCategories();
+    }
+
+    public List<Product> getProducts(String category) {
+        if (category.equals("all")) {
+            return getAllProducts();
+        } else {
+            return getProductByCategory(category);
+        }
     }
 
 }

@@ -58,6 +58,12 @@ body{
 .page-layout {
     display: flex;
 }
+/* ------------------------------------------------------------SEARCH & FILER */
+
+.search-and-filter-container {
+
+}
+
 /* ---------------------------------------------------------PRODUCT CONTAINER */
 
 .product-container {

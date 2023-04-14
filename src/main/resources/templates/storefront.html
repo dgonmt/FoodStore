@@ -17,13 +17,25 @@
 </nav>
 <!-------------------------------------------------------MAIN-->
 <div class="page-layout">
+    <!------------------------------------------SEARCH & FILTER-->
+
+    <form th:action="@{/store}" method="GET">
+        <select name="selectedCategory">
+            <option th:each="category : ${categories}"
+                    th:value="${category}"
+                    th:text="${category}">
+            </option>
+        </select>
+        <button type="submit">Go</button>
+    </form>
+
     <!----------------------------------------PRODUCT CONTAINER-->
     <div class="product-container">
         <div class="product-grid">
             <div th:each="p : ${products}" class="product-box">
                 <h2 th:text="${p.getName()}"></h2>
                 <p th:text="'Price (kg): ' + ${p.getPricePerKg()}"></p>
-                <form th:action="@{add-product}" method="post">
+                <form th:action="@{/add-product}" method="post">
                     <input type="hidden" name="productId" th:value="${p.getId()}">
                     <input type="hidden" name="productName" th:value="${p.getName()}"/>
                     <input type="hidden" name="price" th:value="${p.getPricePerKg()}"/>
@@ -59,7 +71,7 @@
         <div class="cart-finalize">
             <div class="cart-order-btn">
                 <form>
-                    <button type="submit" formaction="/placeorder" class="order-btn">Place Order</button>
+                    <button type="submit" formaction="/placeorder" class="order-btn">Checkout</button>
                 </form>
             </div>
             <div class="cart-sum">

@@ -3,10 +3,7 @@ package se.iths.foodstore.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.SessionScope;
 import se.iths.foodstore.entity.Customer;
 import se.iths.foodstore.model.CartProduct;
@@ -14,7 +11,6 @@ import se.iths.foodstore.service.CustomerService;
 import se.iths.foodstore.service.ProductService;
 import se.iths.foodstore.service.StoreService;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +28,9 @@ public class CustomerController {
 
     Customer customer;
 
-    List<CartProduct> cartProducts = new ArrayList<>();
+
+    String selectedCategory = "all";
+    String cartSum;
 
 
     /* Customer login/validation
@@ -53,18 +51,36 @@ public class CustomerController {
         return "login-customer";
     }
 
-    @PostMapping("/customerlogin")
+    @PostMapping("/store")
     public String redirectCustomerToStore(@RequestParam String username,
                                           @RequestParam String password,
                                           Model m) {
 
         System.out.println("/customerlogin POST");
 
-        customer = customerService.escortCustomer(username, password);
+        m.addAttribute("loggedCustomer", customerService.escortCustomer(username, password));
+        m.addAttribute("loggedCustomer", storeService.getLoggedCustomer(username, password));
+        m.addAttribute("products", productService.getProducts(storeService.getSelectedCategory()));
+        m.addAttribute("categories", productService.getCategories());
+        m.addAttribute("selectedCategory", storeService.getSelectedCategory());
 
-        m.addAttribute("loggedCustomer", customer);
 
-        prepareStore(m);
+        //prepareStore(m);
+
+        return "storefront";
+    }
+
+    @GetMapping(value = "/store")
+    public String showByCategory(@RequestParam(name = "selectedCategory") String category,
+                                 Model m) {
+
+
+        // TODO Fix products-attribute to get correct data
+        m.addAttribute("products", productService.getProducts(selectedCategory));
+        m.addAttribute("categories", productService.getCategories());
+        m.addAttribute("cartProductList", storeService.getCart());
+        m.addAttribute("selectedCategory", storeService.setAndGetCategory(category));
+        m.addAttribute("cartsum", storeService.calcAndRoundPriceOfCart());
 
         return "storefront";
     }
@@ -76,19 +92,21 @@ public class CustomerController {
                                    @RequestParam String price,
                                    @RequestParam String quantity,
                                    Model m) {
-        cartProducts.add(new CartProduct(
+
+        storeService.addProductToCart(
                 productId,
                 productName,
                 price,
-                quantity));
+                quantity
+        );
 
-        String sum = String.valueOf(calculateAndRoundTotal(cartProducts));
 
-        m.addAttribute("cartProductList", cartProducts);
-        m.addAttribute("cartsum", sum);
-        prepareStore(m);
+        m.addAttribute("products", productService.getProducts(selectedCategory));
+        m.addAttribute("categories", productService.getCategories());
+        m.addAttribute("cartProductList", storeService.getCart());
+        m.addAttribute("selectedCategory", storeService.getSelectedCategory());
+        m.addAttribute("cartsum", storeService.calcAndRoundPriceOfCart());
 
-        printArray(cartProducts);
 
         return "storefront";
     }
@@ -97,16 +115,14 @@ public class CustomerController {
     public String addProductToCart(@RequestParam int indexToRemove,
                                    Model m) {
 
-        cartProducts.remove(indexToRemove);
 
+        m.addAttribute("products", productService.getProducts(selectedCategory));
+        m.addAttribute("categories", productService.getCategories());
+        m.addAttribute("cartProductList", storeService.removeItemInCart(indexToRemove));
+        m.addAttribute("selectedCategory", storeService.getSelectedCategory());
+        m.addAttribute("cartsum", storeService.calcAndRoundPriceOfCart());
 
-        String sum = String.valueOf(calculateAndRoundTotal(cartProducts));
-
-
-        m.addAttribute("cartProductList", cartProducts);
-        m.addAttribute("cartsum", sum);
-
-        prepareStore(m);
+        //prepareStore(m);
 
 
         return "storefront";
@@ -115,7 +131,7 @@ public class CustomerController {
     @GetMapping("/placeorder")
     public String placeOrder(Model m) {
 
-        storeService.createOrder(customer, cartProducts);
+        storeService.createOrder();
         prepareStore(m);
         return "storefront";
     }
@@ -126,6 +142,7 @@ public class CustomerController {
 
     public void prepareStore(Model m) {
         m.addAttribute("products", productService.getAllProducts());
+        m.addAttribute("categories", productService.getCategories());
     }
 
     public String calculateAndRoundTotal(List<CartProduct> cart) {
