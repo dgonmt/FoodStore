@@ -55,6 +55,18 @@ public class CustomerController {
         return "storefront";
     }
 
+    @GetMapping("/storez")
+    public String searchByProductName(@RequestParam(name = "searchProductName") String queryName,
+                                      Model m) {
+        m.addAttribute("selectedCategory", storeService.getSelectedCategory());
+        m.addAttribute("products", productService.getProductByName(queryName));
+        m.addAttribute("categories", productService.getCategories());
+        m.addAttribute("cartProductList", storeService.getCart());
+        m.addAttribute("cartsum", storeService.calcAndRoundPriceOfCart());
+
+        return "storefront";
+    }
+
 
     @PostMapping("/add-product") // Adds the product to the cart
     public String addProductToCart(@RequestParam Long productId,
@@ -73,7 +85,7 @@ public class CustomerController {
         m.addAttribute("products", productService.getProducts(storeService.getSelectedCategory()));
         m.addAttribute("categories", productService.getCategories());
         m.addAttribute("cartProductList", storeService.getCart());
-        m.addAttribute("selectedCategory", storeService.getSelectedCategory());
+        m.addAttribute("selectedCategory", storeService.selectAll());
         m.addAttribute("cartsum", storeService.calcAndRoundPriceOfCart());
 
 

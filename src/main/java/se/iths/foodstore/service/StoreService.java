@@ -105,5 +105,11 @@ public class StoreService {
         return selectedCustomer;
     }
 
+    public String selectAll() {
+        this.selectedCategory = "all";
+
+        return this.selectedCategory;
+    }
+
 
 }
