@@ -64,6 +64,7 @@ public class StoreService {
         return returnSum;
     }
 
+    // TODO Change this method to return orderdata for printing
     public void createOrder() {
 
         Orders orders = new Orders();
