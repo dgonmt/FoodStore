@@ -163,8 +163,18 @@ body{
     padding-left: 20px;
 }
 
+.cart-item-row-minus {
+    padding-left: 120px;
+
+}
+
 .cart-item-row-middle {
     flex-grow: 1;
+    margin-left: 30px;
+}
+
+.cart-item-row-plus {
+    padding-right: 150px;
 }
 
 .cart-item-row-right {
@@ -217,6 +227,51 @@ body{
     text-decoration: none;
 }
 
+.quant-button {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 8px 6px;
+    border-radius: 10px;
+    background-color: rgba(51, 167, 204, 0.7);
+    cursor: pointer;
+    transition: background-color 0.1s ease;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}
+
+.quant-button-component {
+    display: block;
+    width: 7px;
+    height: 3px;
+    background-color: rgba(51, 51, 51, 0.71);
+}
+
+/*.incr-button {*/
+/*    display: block;*/
+/*    font-size: 16px;*/
+/*    font-weight: bold;*/
+/*    padding: 8px 6px;*/
+/*    border-radius: 10px;*/
+/*    background-color: rgba(94, 204, 51, 0.14);*/
+/*    cursor: pointer;*/
+/*    transition: background-color 0.1s ease;*/
+/*    border: none;*/
+/*    color: white;*/
+/*    text-align: center;*/
+/*    text-decoration: none;*/
+
+
+/*}*/
+
+.incr-button-component-1 {
+    display: block;
+    width: 7px;
+    height: 3px;
+    background-color: rgba(51, 51, 51, 0.71);
+}
 
 
 .delete-button {
@@ -253,6 +308,11 @@ body{
     transform: translateY(-3px);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.43);
 }
+
+.quant-button:hover, .delete-button:hover {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.43);
+}
+
 .add-button:active, .order-btn:active {
     transform: translateY(3px);
 }

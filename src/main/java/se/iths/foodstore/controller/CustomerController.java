@@ -94,6 +94,34 @@ public class CustomerController {
         return "storefront";
     }
 
+    @PostMapping("/decr")
+    public String decrQuantity(@RequestParam int indexToModify,
+                               Model m) {
+
+        m.addAttribute("products", productService.getProducts(storeService.getSelectedCategory()));
+        m.addAttribute("categories", productService.getCategories());
+        m.addAttribute("cartProductList", storeService.decrItem(indexToModify));
+        m.addAttribute("selectedCategory", storeService.getSelectedCategory());
+        m.addAttribute("cartsum", storeService.calcAndRoundPriceOfCart());
+
+        return "storefront";
+    }
+
+    @PostMapping("/incr")
+    public String incrQuantity(@RequestParam int indexToModify,
+                               Model m) {
+
+        m.addAttribute("products", productService.getProducts(storeService.getSelectedCategory()));
+        m.addAttribute("categories", productService.getCategories());
+        m.addAttribute("cartProductList", storeService.incrItem(indexToModify));
+        m.addAttribute("selectedCategory", storeService.getSelectedCategory());
+        m.addAttribute("cartsum", storeService.calcAndRoundPriceOfCart());
+
+        return "storefront";
+    }
+
+
+
     @GetMapping("/placeorder") // Creates the order using the cart
     public String placeOrder(Model m) {
 

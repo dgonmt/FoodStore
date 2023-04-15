@@ -49,4 +49,19 @@ public class CartProduct {
         return id;
     }
 
+
+    // TODO change type of quantity variable in order to not write this ugly..
+    public void incrQuantity() {
+        int number = Integer.valueOf(this.quantity);
+        number++;
+        this.quantity = String.valueOf(number);
+    }
+
+    // TODO change type of quantity variable in order to not write this ugly..
+    public void decrQuantity() {
+        int number = Integer.valueOf(this.quantity);
+        number--;
+        this.quantity = String.valueOf(number);
+    }
+
 }

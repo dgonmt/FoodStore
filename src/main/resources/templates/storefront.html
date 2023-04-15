@@ -53,9 +53,30 @@
             <li>Price</li>
         </ul>
         <ul th:each="c, iInfo : ${cartProductList}" class="cart-item">
+
             <div class="cart-row">
                 <li th:text="${c.getProductName()}" class="cart-item-row-left"></li>
+
+                <div class="cart-item-row-minus">
+                    <form th:action="@{decr}" method="post">
+                        <input type="hidden" name="indexToModify" th:value="${iInfo.index}">
+                        <button class="quant-button">
+                            <span class="quant-button-component"></span>
+                        </button>
+                    </form>
+                </div>
+
                 <li th:text="${c.getQuantity()}" class="cart-item-row-middle"></li>
+
+                <div class="cart-item-row-plus">
+                    <form th:action="@{incr}" method="post">
+                        <input type="hidden" name="indexToModify" th:value="${iInfo.index}">
+                        <button class="quant-button">
+                            <span class="quant-button-component"></span>
+                        </button>
+                    </form>
+                </div>
+
                 <li th:text="${c.getPrice()}" class="cart-item-row-right"></li>
             </div>
             <div class="cart-delete">

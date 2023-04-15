@@ -53,6 +53,18 @@ public class StoreService {
         return this.cartProducts;
     }
 
+    public List<CartProduct> decrItem(int index) {
+        this.cartProducts.get(index).decrQuantity();
+
+        return this.cartProducts;
+    }
+
+    public List<CartProduct> incrItem(int index) {
+        this.cartProducts.get(index).incrQuantity();
+
+        return this.cartProducts;
+    }
+
 
     public String calcAndRoundPriceOfCart() {
         double sum = 0;
