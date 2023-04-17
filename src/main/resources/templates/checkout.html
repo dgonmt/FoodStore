@@ -1,14 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <!--    <link th:href="@{/styles/order-summary.css}" rel="stylesheet"/>-->
+
+    <style>
+
+
+        .container {
+            border-radius: 10px;
+            background-color: rgba(33, 150, 243, 0.39);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.43);
+            margin: 5rem;
+
+        }
+
+        .cell {
+            margin-top: 2px;
+            margin-bottom: 2px;
+
+        }
+
+        .grid {
+            display: grid;
+            align-items: center;
+            justify-items: center;
+            grid-template-columns: 1fr 0.5fr 1fr;
+        }
+
+
+        .cart-line {
+            width: auto;
+            height: 2px;
+            background-color: rgba(1, 1, 1, 0.29);
+            margin: 20px 10px 10px 20px;
+        }
+
+        .cart-sum {
+            display: flex;
+            margin-right: 65px;
+            margin-top: 15px;
+        }
+
+
+    </style>
+
 </head>
 <body>
 
-<p>
-  Success!
-</p>
+
+
+<div class="container">
+
+    <div class="grid">
+        <h2>Name</h2>
+        <h2>Quantity</h2>
+        <h2>Price</h2>
+    </div>
+    <div class="cart-line"></div>
+    <div th:each="p : ${cart}" class="grid">
+        <p th:text="${p.getProductName()}" class="cell"></p>
+        <p th:text="${p.getQuantity()}" class="cell"></p>
+        <p th:text="${p.getTotPrice()}" class="cell"></p>
+    </div>
+    <div class="cart-line"></div>
+    <div class="cart-sum">
+        <p>Total :&nbsp;</p>
+        <p th:text="${cartsum}"></p>
+    </div>
+</div>
 
 </body>
 </html>

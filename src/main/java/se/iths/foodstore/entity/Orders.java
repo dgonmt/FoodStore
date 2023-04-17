@@ -33,6 +33,10 @@ public class Orders {
         return this.id;
     }
 
+    public List<OrderLine> getOrderLineList() {
+        return this.orderLineList;
+    }
+
     public void addOrderLine(List<CartProduct> cartProducts) {
 
         for (CartProduct p : cartProducts) {

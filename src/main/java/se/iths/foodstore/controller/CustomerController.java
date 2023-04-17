@@ -132,14 +132,12 @@ public class CustomerController {
         return "storefront";
     }
 
-
-
     @GetMapping("/placeorder") // Creates the order using the cart
     public String placeOrder(Model m) {
 
         // TODO Handle the return value from this call to display the order beautifully
-        storeService.createOrder();
 
+        m.addAttribute("cart", storeService.createOrder());
         m.addAttribute("products", productService.getProducts(storeService.getSelectedCategory()));
         m.addAttribute("categories", productService.getCategories());
         m.addAttribute("selectedCategory", storeService.getSelectedCategory());

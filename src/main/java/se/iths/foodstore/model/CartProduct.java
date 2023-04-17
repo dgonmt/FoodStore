@@ -6,6 +6,7 @@ public class CartProduct {
     private String productName;
     private String price;
     private String quantity;
+    private String totPrice;
 
 
     public CartProduct() {}
@@ -17,6 +18,12 @@ public class CartProduct {
         this.quantity = quantity;
     }
 
+    public void setTotPrice(double price) {
+        this.totPrice = String.valueOf(Math.floor(price * 100) / 100);
+    }
+    public String getTotPrice() {
+        return this.totPrice;
+    }
     public String getProductName() {
         return productName;
     }

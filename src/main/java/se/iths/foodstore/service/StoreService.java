@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
 import se.iths.foodstore.entity.Customer;
+import se.iths.foodstore.entity.OrderLine;
 import se.iths.foodstore.entity.Orders;
 import se.iths.foodstore.model.CartProduct;
 import se.iths.foodstore.repo.OrdersRepo;
@@ -69,7 +70,8 @@ public class StoreService {
     public String calcAndRoundPriceOfCart() {
         double sum = 0;
         for (CartProduct p : this.cartProducts) {
-            sum += Double.valueOf(p.getQuantity()) * Double.valueOf(p.getPrice());
+            p.setTotPrice(Double.valueOf(p.getQuantity()) * Double.valueOf(p.getPrice()));
+            sum += Double.valueOf(p.getTotPrice());
         }
         String returnSum = String.valueOf(Math.floor(sum * 100) / 100);
 
@@ -77,12 +79,15 @@ public class StoreService {
     }
 
     // TODO Change this method to return orderdata for printing
-    public void createOrder() {
+    public List<CartProduct> createOrder() {
 
         Orders orders = new Orders();
         orders.setCustomer_id(this.selectedCustomer.getId());
         orders.addOrderLine(this.cartProducts);
         ordersRepo.save(orders);
+
+        return this.cartProducts;
+
     }
 
     public List<CartProduct> getCart() {
