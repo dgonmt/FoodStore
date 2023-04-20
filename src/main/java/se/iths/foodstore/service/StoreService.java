@@ -24,14 +24,12 @@ public class StoreService {
     CustomerService customerService;
 
     Customer selectedCustomer;
-
-
+    @Autowired
     OrdersRepo ordersRepo;
     private List<CartProduct> cartProducts = new ArrayList<>();
 
     @Autowired
-    public StoreService(OrdersRepo ordersRepo) {
-        this.ordersRepo=ordersRepo;
+    public StoreService() {
     }
 
 
