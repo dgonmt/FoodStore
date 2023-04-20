@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add new product</title>
+    <style>
+        /* Style for the form container */
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Style for the form headings */
+        h3 {
+            padding-top: 4%;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Style for the form input fields */
+        input[type="text"] {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Style for the form submit button */
+        input[type="submit"] {
+            background-color: #33a7cc;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Style for the success message */
+        p {
+            font-size: 16px;
+            text-align: center;
+            margin-top: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Style for the button link */
+        .button-link-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .button-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #33a7cc;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+            text-decoration: none;
+            margin-top: 1%;
+        }
+
+        /* Style for the button link on hover */
+        .button-link:hover {
+            background-color: #2c859d;
+        }
+    </style>
+</head>
+<body>
+<h3>New product</h3>
+<form th:action="@{/newproduct}" method="post" th:object="${product}">
+    Name: <input type="text" th:field="*{name}" />
+    Category: <input type="text" th:field="*{category}" />
+    Weight: <input type="text" th:field="*{weight}" />
+    Price per kg: <input type="text" th:field="*{pricePerKg}" />
+    <input type="submit" value="Add product"/>
+</form>
+<p> <span th:text="${addedProduct}"></span></p>
+
+<div class="button-link-container">
+    <a href="/adminpage" class="button-link">Back to Admin Page</a>
+</div>
+
+</body>
+</html>

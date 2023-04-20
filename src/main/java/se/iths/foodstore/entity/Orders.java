@@ -14,8 +14,19 @@ public class Orders {
     private Long customer_id;
     @OneToMany(cascade = CascadeType.ALL)
     private List<OrderLine> orderLineList = new ArrayList<>();
+    private boolean handled;
 
-    public Orders(){}
+    private boolean isHandled() {
+        return this.handled;
+    }
+
+    public void setHandled(boolean handled) {
+        this.handled = handled;
+    }
+
+    public Orders(){
+        this.handled = false;
+    }
 
     public Long getCustomer_id() {
         return customer_id;

@@ -22,14 +22,8 @@
                 <button type="submit">Go</button>
             </form>
             <!-----------------------------------------SEARCH-->
-            <form th:action="@{/storez}" method="GET">
+            <form th:action="@{/search}" method="GET">
                 <input type="text" name="searchProductName">
-<!--                <select name="selectedCategory">-->
-<!--                    <option th:each="category : ${categories}"-->
-<!--                            th:value="${category}"-->
-<!--                            th:text="${category}">-->
-<!--                    </option>-->
-<!--                </select>-->
                 <button type="submit">Go</button>
             </form>
         </li>

@@ -11,6 +11,8 @@ import java.util.Optional;
 @Service
 public class ProductService {
 
+    Product product;
+
     @Autowired
     ProductRepo repo;
 
@@ -42,4 +44,29 @@ public class ProductService {
         }
     }
 
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public String SaveProductIfNew(Product product){
+        if(repo.existsByName(product.getName())){
+            update(product);
+            return "Updated product, " + product.getName();
+        } else {
+            repo.save(product);
+            return "Added product, " + product.getName();
+        }
+
+    }
+
+    private void update(Product product) {
+        if (repo.existsByName(product.getName())) {
+            Product existingProduct = repo.findProductByName(product.getName()).get(0);
+            existingProduct.setPricePerKg(product.getPricePerKg());
+            existingProduct.setWeight(product.getWeight());
+            existingProduct.setCategory(product.getCategory());
+
+            repo.save(existingProduct);
+        }
+    }
 }

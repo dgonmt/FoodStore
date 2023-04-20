@@ -17,5 +17,7 @@ public interface ProductRepo extends JpaRepository <Product, Long> {
     public List<String> findAllCategories();
 
 
+    List<Product> findByName(String name);
+    boolean existsByName(String name);
 
 }

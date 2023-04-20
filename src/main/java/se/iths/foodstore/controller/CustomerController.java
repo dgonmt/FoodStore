@@ -16,7 +16,7 @@ public class CustomerController {
 
     //--------------------------------------------------------------------------BEANS
 
-    @Autowired // Handles the customer, cart and orders
+    @Autowired // Handles the customer, cart and creates new orders
     StoreService storeService;
     @Autowired // Loads the products from the database
     ProductService productService;
@@ -55,7 +55,7 @@ public class CustomerController {
         return "storefront";
     }
 
-    @GetMapping("/storez")
+    @GetMapping("/search")
     public String searchByProductName(@RequestParam(name = "searchProductName") String queryName,
                                       Model m) {
         m.addAttribute("selectedCategory", storeService.getSelectedCategory());
@@ -106,7 +106,7 @@ public class CustomerController {
         return "storefront";
     }
 
-    @PostMapping("/decr")
+    @PostMapping("/decr")  // Decrements the cart product by one
     public String decrQuantity(@RequestParam int indexToModify,
                                Model m) {
 
@@ -119,7 +119,7 @@ public class CustomerController {
         return "storefront";
     }
 
-    @PostMapping("/incr")
+    @PostMapping("/incr") // Increments the cart product by one
     public String incrQuantity(@RequestParam int indexToModify,
                                Model m) {
 
@@ -132,10 +132,8 @@ public class CustomerController {
         return "storefront";
     }
 
-    @GetMapping("/placeorder") // Creates the order using the cart
+    @GetMapping("/placeorder") // Creates the order using the items in the cart
     public String placeOrder(Model m) {
-
-        // TODO Handle the return value from this call to display the order beautifully
 
         m.addAttribute("cart", storeService.createOrder());
         m.addAttribute("products", productService.getProducts(storeService.getSelectedCategory()));

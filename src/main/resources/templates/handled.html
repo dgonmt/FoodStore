@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Handled Orders</title>
+    <style>* {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: #ecdcd8;
+        font-family: Arial, sans-serif;
+        color: white;
+    }
+
+    h1 {
+        padding-top: 5%;
+        font-size: 48px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    table {
+        margin: 40px auto;
+        border-collapse: collapse;
+        width: 50%;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid white;
+    }
+
+    th {
+        background-color: #bd9aa0;
+        color: white;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    tbody tr:hover {
+        background-color: #ddd;
+    }
+    </style>
+</head>
+<body>
+<h1>Handled Orders</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Order ID</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order : ${ordersHandled}">
+        <td th:text="${order.id}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
