@@ -24,10 +24,11 @@ i databasen.
 kund id och status. Defaultvärdet på status är <code>false</code>.  
 
 **Adminsidan:**  
-- text
-- text
-- text
-- text
+- Admin loggar in, om admin redan finns dirigeras hen vidare till admin-sidan med 3 alternativ, om hen inte finns med dirigeras hen tillbaka till logg in sidan.
+- På admin-sidan får admin tre alternativ: "New product", "Unhandled orders", "Handled orders".
+- På sidan "New product" kan admin lägga in eller uppdatera befintliga produkter.
+- På sidan "Unhandled orders" kan admin markera en obehandlad order som behandlad.
+- På sidan "Handled orders" kan admin få se hanterade ordrar.
 
 ***  
 #### INSTRUKTIONER
