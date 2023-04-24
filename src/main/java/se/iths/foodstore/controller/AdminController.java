@@ -52,14 +52,14 @@ public class AdminController {
 
     @GetMapping("/unhandled")
     public String unhandledOrders(Model m) {
-        List<Orders> unhandledOrders = orderService.findOrder(false);
+        List<Orders> unhandledOrders = orderService.findUnhandledOrder(false);
         m.addAttribute("ordersUnhandled", unhandledOrders);
         return "unhandled";
     }
 
     @GetMapping("/handled")
     public String handledOrders(Model m) {
-        List<Orders> unhandledOrders = orderService.findOrder(true);
+        List<Orders> unhandledOrders = orderService.findUnhandledOrder(true);
         m.addAttribute("ordersHandled", unhandledOrders);
         return "handled";
     }

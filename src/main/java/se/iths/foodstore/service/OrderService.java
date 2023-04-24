@@ -14,7 +14,7 @@ public class OrderService {
     @Autowired
     OrdersRepo repo;
 
-    public List<Orders> findOrder(boolean isHandled) {
+    public List<Orders> findUnhandledOrder(boolean isHandled) {
         return repo.findByHandled(isHandled);
     }
 
