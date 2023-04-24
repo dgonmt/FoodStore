@@ -2,19 +2,17 @@ package se.iths.foodstore.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import se.iths.foodstore.model.CartProduct;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+
+
 class StoreServiceTest {
 
-    @Mock
     private StoreService storeService;
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this);
         storeService = new StoreService();
     }
 
